@@ -19,8 +19,12 @@ def main():
             print("Goodbye!")
             break
 
+        # Configure with thread_id for memory
+        config = {"configurable": {"thread_id": "default"}}
+
         for chunk in agent.stream(
             {"messages": [("user", user_input)]},
+            config=config,
         ):
             if "agent" in chunk and "messages" in chunk["agent"]:
                 for msg in chunk["agent"]["messages"]:

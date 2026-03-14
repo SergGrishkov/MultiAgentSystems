@@ -3,8 +3,8 @@ from pydantic_settings import BaseSettings
 
 
 class Settings(BaseSettings):
-    api_key: SecretStr
-    model_name: str
+    openai_api_key: SecretStr
+    model_name: str = "gpt-4o-mini"
 
     max_search_results: int = 5
     max_url_content_length: int = 5000
@@ -14,4 +14,7 @@ class Settings(BaseSettings):
     model_config = {"env_file": ".env"}
 
 
-SYSTEM_PROMPT = """"""
+SETTINGS = Settings()
+
+SYSTEM_PROMPT = """You are a helpful research assistant. When asked a question.
+Always provide structured, well-organized reports in Markdown format."""
